@@ -19,13 +19,15 @@ def index(request):
     context_dict['categories'] = category_list
     context_dict['pages'] = page_list
     visitor_cookie_handler(request)
-    context_dict['visits'] = visits
+    # context_dict['visits'] = request.session['visits']
     response = render(request, 'rango/index.html', context=context_dict)
-    visitor_cookie_handler(request, response)
+    # visitor_cookie_handler(request, response)
     return response
 
 def about(request):
     context_dict = {'boldmessage': 'This tutorial has been put together by Kylee Down'}
+    visitor_cookie_handler(request)
+    context_dict['visits'] = request.session['visits']
     # if request.session.test_cookie_worked(): 
     #     print("TEST COOKIE WORKED!") 
     #     request.session.delete_test_cookie()
